@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,13 +19,16 @@ import com.google.firebase.auth.FirebaseUser;
 import static com.example.orkunsoylu.bringit.Constants.*;
 
 public class HomeActivity extends AppCompatActivity {
+    private User user;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "HomeActivity";
+    private EditText searchText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        searchText = (EditText) findViewById(R.id.searchText);
         boolean check = getIntent().getBooleanExtra("CHECK", false);
         SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
         String usernameCheck = preferences.getString(PREFERENCE_USERNAME, null);
@@ -52,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == ANSWER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 String email = data.getStringExtra("EMAIL");
@@ -72,14 +77,18 @@ public class HomeActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                 }
 
-                                // ...
+                                String username = data.getStringExtra("EMAIL");
+                                String password = data.getStringExtra("PASSWORD");
+                                user = new User(username,password,null);
                             }
                         });
             }
             if (resultCode == RESULT_CANCELED) {
-                //Guest View
+
             }
         }
+
+
     }
 
     @Override
@@ -94,5 +103,17 @@ public class HomeActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    public void searchForMore(View v){
+        if (v.getId() == R.id.searchForMoreButton){
+            Intent intent = new Intent(HomeActivity.this,SearchWishesActivity.class);
+            intent.putExtra("SEARCH",searchText.getText().toString());
+            startActivity(intent);
+        }
+    }
+
+    public void myAllWishes(View v){
+
     }
 }

@@ -9,6 +9,7 @@ public class User {
     private String password;
     private Wish[] wishes;
 
+
     public User(String username,String password,Wish[] wishes){
         setUsername(username);
         setPassword(password);

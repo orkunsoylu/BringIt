@@ -8,11 +8,15 @@ public class Wish {
     private String name;
     private String description;
     private double price;
+    private String country;
+    private String owner;
 
-    public Wish(String name,String description,double price){
+    public Wish(String name,String description,double price,String country,String owner){
         setName(name);
         setDescription(description);
         setPrice(price);
+        setCountry(country);
+        setOwner(owner);
     }
 
     public String getName() {
@@ -37,5 +41,21 @@ public class Wish {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }
