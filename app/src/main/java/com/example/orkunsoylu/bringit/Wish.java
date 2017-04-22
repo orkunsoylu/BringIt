@@ -1,20 +1,18 @@
 package com.example.orkunsoylu.bringit;
 
 /**
- * Created by orkunsoylu on 05/03/2017.
+ * Created by orkunsoylu on 22/04/2017.
  */
 
 public class Wish {
     private String name;
+    private String description;
     private double price;
-    private String info;
-    private String address;
 
-    public Wish(String name,double price,String info,String address){
+    public Wish(String name,String description,double price){
         setName(name);
+        setDescription(description);
         setPrice(price);
-        setInfo(info);
-        setAddress(address);
     }
 
     public String getName() {
@@ -25,27 +23,19 @@ public class Wish {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }

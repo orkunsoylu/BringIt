@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BringIt</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="auth_failed">Sign-in failed</string>
 </resources>

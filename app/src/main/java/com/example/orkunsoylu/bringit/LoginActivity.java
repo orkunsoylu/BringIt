@@ -1,58 +1,55 @@
 package com.example.orkunsoylu.bringit;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Window;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
+
     private EditText emailText,passwordText;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private static final String TAG = "LoginActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         emailText = (EditText) findViewById(R.id.emailText);
         passwordText = (EditText) findViewById(R.id.passwordText);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        passwordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE){
+                    Intent intent = new Intent();
+                    intent.putExtra("EMAIL", emailText.getText().toString());
+                    intent.putExtra("PASSWORD",passwordText.getText().toString());
+                    if (getParent() == null) {
+                        setResult(Activity.RESULT_OK, intent);
+                    } else {
+                        getParent().setResult(Activity.RESULT_OK, intent);
+                    }
+                    finish();
                 }
-                // ...
+                return false;
             }
-        };
+        });
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
+    public void skip(View view){
+        if(view.getId() == R.id.skipButton) {
+            Intent intent = new Intent();
+            intent.putExtra("CHECK", true);
+            if (getParent() == null) {
+                setResult(Activity.RESULT_CANCELED, intent);
+            } else {
+                getParent().setResult(Activity.RESULT_CANCELED, intent);
+            }
+            finish();
         }
     }
 }
