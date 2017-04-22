@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "99963698663",
+    "firebase_url": "https://bringit-cbaab.firebaseio.com",
+    "project_id": "bringit-cbaab",
+    "storage_bucket": "bringit-cbaab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99963698663:android:ed7583be3d55c977",
+        "android_client_info": {
+          "package_name": "com.example.orkunsoylu.bringit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99963698663-9sdd7luf10m96n7og0rfkgpllu1kg1ac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.orkunsoylu.bringit",
+            "certificate_hash": "a05d6f2371b061c05a9499c09646ff7dfd6ec3cc"
+          }
+        },
+        {
+          "client_id": "99963698663-68dvadp8ori4qd5fo6alc9c8vpu52249.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-tEs0A24o6dC8llEUjBZQu5g0uNQV1no"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99963698663-68dvadp8ori4qd5fo6alc9c8vpu52249.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
