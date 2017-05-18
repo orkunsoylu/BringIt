@@ -1,10 +1,12 @@
-package com.example.orkunsoylu.bringit;
+package com.example.orkunsoylu;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import com.example.orkunsoylu.bringit.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

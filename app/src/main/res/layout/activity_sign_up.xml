@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.orkunsoylu.SignUpActivity">
+
+    <TextView
+        android:id="@+id/signUpAppLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Sign Up to BringIt"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signUpPasswordLabel"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Password"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEmailLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/signUpPasswordText"
+        android:layout_marginBottom="0dp" />
+
+    <TextView
+        android:id="@+id/signUpFirstNameLabel"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="First Name"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpPasswordLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/signUpFirstNameText"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <TextView
+        android:id="@+id/signUpLastNameLabel"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Last Name"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpFirstNameLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/signUpLastNameText"
+        android:layout_marginBottom="0dp" />
+
+    <TextView
+        android:id="@+id/signUpCountryLabel"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:text="Country"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/signUpCountryText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpLastNameLabel" />
+
+    <TextView
+        android:id="@+id/signUpEmailLabel"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="E-Mail Address"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpAppLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/signUpEmailText"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <EditText
+        android:id="@+id/signUpCountryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpLastNameText" />
+
+    <EditText
+        android:id="@+id/signUpLastNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpFirstNameText" />
+
+    <EditText
+        android:id="@+id/signUpFirstNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpPasswordText" />
+
+    <EditText
+        android:id="@+id/signUpPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEmailText" />
+
+    <EditText
+        android:id="@+id/signUpEmailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpAppLabel" />
+
+</android.support.constraint.ConstraintLayout>
