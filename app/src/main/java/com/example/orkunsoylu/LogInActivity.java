@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -18,8 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends Activity implements View.OnClickListener{
+public class LogInActivity extends Activity implements View.OnClickListener{
     private EditText emailText,passwordText;
     private Button signUpButton,skipButton;
     private FirebaseAuth mAuth;
@@ -40,12 +41,12 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                     String tempEmail = emailText.getText().toString();
                     String tempPassword = passwordText.getText().toString();
                     mAuth.signInWithEmailAndPassword(tempEmail, tempPassword)
-                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                                         intent.putExtra("USER_ID",firebaseUser.getUid());
                                         startActivity(intent);
                                     }
@@ -65,17 +66,17 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
     public void onClick(View v){
         if (v.getId() == skipButton.getId()){
-            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+            Intent intent = new Intent(LogInActivity.this,MainActivity.class);
             intent.putExtra("USER_ID","0");
             startActivity(intent);
         } else if (v.getId() == signUpButton.getId()){
-            Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+            Intent intent = new Intent(LogInActivity.this,SignUpActivity.class);
             startActivityForResult(intent,SIGN_UP_REQUEST);
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == SIGN_UP_REQUEST) {
             if (resultCode == RESULT_OK) {
                 String tempEmail = data.getStringExtra("EMAIL");
@@ -83,12 +84,19 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 emailText.setText(tempEmail);
                 passwordText.setText(tempPassword);
                 mAuth.signInWithEmailAndPassword(tempEmail, tempPassword)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference userReference = database.getReference("users").child(firebaseUser.getUid());
+                                    userReference.child("first_name").setValue(data.getStringExtra("FNAME"));
+                                    userReference.child("last_name").setValue(data.getStringExtra("LNAME"));
+                                    userReference.child("country").setValue(data.getStringExtra("COUNTRY"));
+
+                                    Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                                     intent.putExtra("USER_ID",firebaseUser.getUid());
                                     startActivity(intent);
                                 }

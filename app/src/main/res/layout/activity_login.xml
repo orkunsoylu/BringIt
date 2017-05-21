@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.orkunsoylu.LoginActivity">
+    tools:context="com.example.orkunsoylu.LogInActivity">
 
     <TextView
         android:id="@+id/loginAppLabel"
@@ -79,7 +79,7 @@
     <Button
         android:id="@+id/loginSignUpButton"
         android:layout_width="75dp"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="Sign Up"
@@ -90,7 +90,7 @@
     <Button
         android:id="@+id/loginSkipButton"
         android:layout_width="75dp"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:text="Skip"

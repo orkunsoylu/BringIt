@@ -47,10 +47,12 @@ public class SignUpActivity extends Activity {
                                     if (task.isSuccessful()){
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference databaseReference = database.getReference("users");
-
                                         Intent intent = new Intent();
                                         intent.putExtra("EMAIL",tempEmail);
                                         intent.putExtra("PASS",tempPassword);
+                                        intent.putExtra("FNAME",firstNameText.getText().toString());
+                                        intent.putExtra("LNAME",lastNameText.getText().toString());
+                                        intent.putExtra("COUNTRY",countryText.getText().toString());
                                         setResult(Activity.RESULT_OK,intent);
                                         finish();
                                     }
