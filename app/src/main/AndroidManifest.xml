@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.orkunsoylu.SignUpActivity" />
-        <activity android:name="com.example.orkunsoylu.MainActivity"></activity>
+        <activity android:name="com.example.orkunsoylu.MainActivity" />
+        <activity android:name="com.example.orkunsoylu.WishActivity"></activity>
     </application>
 
 </manifest>

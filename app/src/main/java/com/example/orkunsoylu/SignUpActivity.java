@@ -45,8 +45,6 @@ public class SignUpActivity extends Activity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference databaseReference = database.getReference("users");
                                         Intent intent = new Intent();
                                         intent.putExtra("EMAIL",tempEmail);
                                         intent.putExtra("PASS",tempPassword);
