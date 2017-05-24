@@ -57,6 +57,8 @@ public class LogInActivity extends Activity implements View.OnClickListener{
             }
         });
 
+        emailText.setText("soyluorkun@gmail.com");
+        passwordText.setText("123456Orkun");
         signUpButton = (Button) findViewById(R.id.loginSignUpButton);
         signUpButton.setOnClickListener(this);
         skipButton = (Button) findViewById(R.id.loginSkipButton);
@@ -71,6 +73,7 @@ public class LogInActivity extends Activity implements View.OnClickListener{
             startActivity(intent);
         } else if (v.getId() == signUpButton.getId()){
             Intent intent = new Intent(LogInActivity.this,SignUpActivity.class);
+            intent.putExtra("USER_ID","0");
             startActivityForResult(intent,SIGN_UP_REQUEST);
         }
     }

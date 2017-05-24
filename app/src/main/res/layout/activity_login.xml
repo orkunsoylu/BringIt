@@ -9,17 +9,17 @@
     <TextView
         android:id="@+id/loginAppLabel"
         android:layout_width="111dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="BringIt"
         android:textSize="30sp"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintLeft_toRightOf="@+id/loginSignUpButton"
-        android:layout_marginLeft="8dp"
         app:layout_constraintRight_toLeftOf="@+id/loginSkipButton"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.513" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/loginEmailLabel"
@@ -52,7 +52,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Enter Your E-Mail"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:selectAllOnFocus="false"
         android:textSize="14sp"
         app:layout_constraintHorizontal_bias="0.387"
@@ -78,8 +78,9 @@
 
     <Button
         android:id="@+id/loginSignUpButton"
+        style="@android:style/Widget.Holo.Light.Button.Small"
         android:layout_width="75dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="Sign Up"
@@ -89,8 +90,9 @@
 
     <Button
         android:id="@+id/loginSkipButton"
+        style="@android:style/Widget.Holo.Light.Button.Small"
         android:layout_width="75dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:text="Skip"
