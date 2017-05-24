@@ -52,11 +52,11 @@ public class MainActivity extends Activity {
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         }
 
-        drawerTitles = new String[4];
+        drawerTitles = new String[3];
         drawerTitles[0] = "Home";
         drawerTitles[1] = "Search";
         drawerTitles[2] = "Profile";
-        drawerTitles[3] = "o";
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.homeDrawerLayout);
         drawerList = (ListView) findViewById(R.id.homeLeftDrawer);

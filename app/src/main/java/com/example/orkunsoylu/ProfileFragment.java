@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     private String userWishes[];
     private String selectedWishID;
     private FirebaseUser firebaseUser;
-    private DatabaseReference userReference;
+    private DatabaseReference userReference,wishReference;
     private ConstraintLayout profileRow1Wish1,profileRow1Wish2,profileRow1Wish3,
             profileRow2Wish1,profileRow2Wish2,profileRow2Wish3,
             profileRow3Wish1,profileRow3Wish2,profileRow3Wish3;
@@ -52,9 +52,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         firebaseUser = ((MainActivity) getActivity()).returnUser();
         if (firebaseUser != null) {
             userReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+            wishReference = FirebaseDatabase.getInstance().getReference("wishes");
 
-
-            userWishes = new String[9];
+            userWishes = new String[10];
 
             prepareLayout(currFragment);
 
@@ -66,9 +66,21 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                     String country = (String) dataSnapshot.child("country").getValue();
                     nameText.setText(fname + " " + lname);
                     countryText.setText(country);
-                    for (int i = 0; i < 9; i++) {
-                        userWishes[i] = (String) dataSnapshot.child("wishes").child(Integer.toString(i)).getValue();
+                    for (int i = 1; i < 10; i++) {
+                        userWishes[i] = dataSnapshot.child("wishes").child(Integer.toString(i)).getKey();
                     }
+
+                    fillLayoutOf(profileRow1Wish1,userWishes[1]);
+                    fillLayoutOf(profileRow1Wish2,userWishes[2]);
+                    fillLayoutOf(profileRow1Wish3,userWishes[3]);
+
+                    fillLayoutOf(profileRow2Wish1,userWishes[4]);
+                    fillLayoutOf(profileRow2Wish2,userWishes[5]);
+                    fillLayoutOf(profileRow2Wish3,userWishes[6]);
+
+                    fillLayoutOf(profileRow3Wish1,userWishes[7]);
+                    fillLayoutOf(profileRow3Wish2,userWishes[8]);
+                    fillLayoutOf(profileRow3Wish3,userWishes[9]);
                 }
 
                 @Override
@@ -123,40 +135,39 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         } else {
             switch (v.getId()){
                 case R.id.profileRow1Wish1:
-                    selectedWishID = userWishes[0];
-                    break;
-                case R.id.profileRow1Wish2:
                     selectedWishID = userWishes[1];
                     break;
-                case R.id.profileRow1Wish3:
+                case R.id.profileRow1Wish2:
                     selectedWishID = userWishes[2];
                     break;
-                case R.id.profileRow2Wish1:
+                case R.id.profileRow1Wish3:
                     selectedWishID = userWishes[3];
                     break;
-                case R.id.profileRow2Wish2:
+                case R.id.profileRow2Wish1:
                     selectedWishID = userWishes[4];
                     break;
-                case R.id.profileRow2Wish3:
+                case R.id.profileRow2Wish2:
                     selectedWishID = userWishes[5];
                     break;
-                case R.id.profileRow3Wish1:
+                case R.id.profileRow2Wish3:
                     selectedWishID = userWishes[6];
                     break;
-                case R.id.profileRow3Wish2:
+                case R.id.profileRow3Wish1:
                     selectedWishID = userWishes[7];
                     break;
-                case R.id.profileRow3Wish3:
+                case R.id.profileRow3Wish2:
                     selectedWishID = userWishes[8];
+                    break;
+                case R.id.profileRow3Wish3:
+                    selectedWishID = userWishes[9];
                     break;
             }
             Intent intent = new Intent(getActivity(),WishActivity.class);
             intent.putExtra("WISH_ID",selectedWishID);
+            intent.putExtra("NEW_WISH",false);
             startActivity(intent);
         }
     }
-
-
 
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data){
@@ -213,5 +224,26 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         profileRow3Wish1.setOnClickListener(this);
         profileRow3Wish2.setOnClickListener(this);
         profileRow3Wish3.setOnClickListener(this);
+    }
+
+    public void fillLayoutOf(final ConstraintLayout layout,String wishID){
+        if (wishID != null) {
+            DatabaseReference fillerReference = wishReference.child(wishID);
+            fillerReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    ((TextView) layout.getChildAt(1)).setText((String) dataSnapshot.child("title").getValue());
+                    ((TextView) layout.getChildAt(2)).setText((String) dataSnapshot.child("country").getValue());
+                    ((TextView) layout.getChildAt(3)).setText((String) dataSnapshot.child("price").getValue());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        } else {
+            layout.setVisibility(View.INVISIBLE);
+        }
     }
 }
